@@ -1,3 +1,4 @@
+'use client';
 import { lusitana } from '@/app/ui/fonts';
 import {
   AtSymbolIcon,
@@ -6,6 +7,9 @@ import {
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
+import { useFormState, useFormStatus } from 'react-dom';
+import { authenticate } from '@/app/lib/actions';
+
 
 export default function LoginForm() {
   return (
