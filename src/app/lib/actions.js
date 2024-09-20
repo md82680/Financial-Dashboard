@@ -1,9 +1,15 @@
-import { signIn } from 'next-auth/react';
+'use server';
+import { signIn } from '../../../auth';
 import { AuthError } from 'next-auth';
 
-export async function authenticate(formData) {
+export async function authenticate(prevState, formData) {
   try {
-    await signIn('credentials', formData);
+    await signIn('credentials', {
+      redirect: true,
+      redirectTo: '/ui/dashboard',
+      email: formData.get('email'),
+      password: formData.get('password'),
+    });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
